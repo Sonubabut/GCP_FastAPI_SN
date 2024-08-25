@@ -1,29 +1,29 @@
 # Stage 1: Build the React app
 FROM node:18-alpine AS build
 
-# Set the working directory
 WORKDIR /app
 
-# Copy the package.json and package-lock.json files
-COPY package*.json ./
-
 # Install dependencies
+COPY package*.json ./
 RUN npm install
 
 # Copy the source code
 COPY . .
 
-# Build the React app for production
+# Build the production version of the React app
 RUN npm run build
 
-# Stage 2: Serve the React app using a lightweight web server
+# Stage 2: Serve the React app with nginx
 FROM nginx:stable-alpine
 
-# Copy the built React app to the nginx html directory
+# Copy the built files to the nginx directory
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Expose the port for the container
+# Expose the port for Cloud Run
 EXPOSE 8080
+
+# Set the default port for Cloud Run
+ENV PORT=8080
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
