@@ -13,14 +13,11 @@ RUN npm install
 # Copy the rest of the application files to the working directory
 COPY . .
 
-# Install TypeScript globally
+# Install globally
 RUN npm install --force
 
-# Compile TypeScript to JavaScript
+# Compile JavaScript
 RUN npm run build
-
-# Specify the command to run the application
-CMD ["node", "dist/app.js"]
 
 # Expose the port the app runs on
 EXPOSE 3000
