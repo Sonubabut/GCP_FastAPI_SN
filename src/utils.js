@@ -1,4 +1,4 @@
-export const API_URL = "http://localhost:5000";
+export const API_URL = "https://gcp-demo-node-3tczl25ztq-uc.a.run.app";
 
 /**
  * Sends a POST request to the backend to get a response from the AI.
