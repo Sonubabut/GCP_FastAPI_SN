@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Install TypeScript globally
-RUN npm install -g typescript
+RUN npm install --force
 
 # Compile TypeScript to JavaScript
 RUN npm run build
