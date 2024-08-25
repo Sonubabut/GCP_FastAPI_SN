@@ -23,10 +23,7 @@ FROM nginx:stable-alpine
 COPY --from=build /app/build /usr/share/nginx/html
 
 # Expose the port for the container
-EXPOSE 8080
-
-# Make the port configurable for Cloud Run
-ENV PORT=8080
+EXPOSE 3000
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
