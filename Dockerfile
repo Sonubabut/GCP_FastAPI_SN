@@ -7,17 +7,17 @@ WORKDIR /app
 # Copy package.json and package-lock.json (if available)
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Install dependencies and force resolve any conflicts
+RUN npm install --force
 
 # Copy the rest of the application files to the working directory
 COPY . .
 
-# Install globally
-RUN npm install --force
-
-# Compile JavaScript
+# Build the application
 RUN npm run build
 
 # Expose the port the app runs on
 EXPOSE 3000
+
+# Start the application
+CMD ["npm", "start"]
